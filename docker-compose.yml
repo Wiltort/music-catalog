@@ -1,0 +1,13 @@
+services:
+  web:
+    build: .
+    command: >
+      sh -c "cd app/ && python manage.py migrate &&
+             python manage.py runserver 0.0.0.0:8000"
+    volumes:
+      - .:/code
+    ports:
+      - "8000:8000"
+    environment:
+      - DEBUG=1
+      - DJANGO_ALLOWED_HOSTS=*
